@@ -3,14 +3,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject treePrefab;
+    
     private float spawnZoneX;
     private float spawnZoneY;
     public float prefabCount;
     public float YRangeTrees = 400;
     public float xRangeTrees = 100;
+
+    [Header("Layer Mask")]
+    public LayerMask obstacleLayers;
     void Start()
     {
-        SpawnTrees();
+        //SpawnTrees();
     }
 
     void Update()

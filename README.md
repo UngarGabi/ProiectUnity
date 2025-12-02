@@ -14,7 +14,7 @@ S-a creat harta si s-a format terenul folosind Terrain.
 
 S-au adaugat asset-uri utile si s-au facut prefab-uri.
 
-S-a creat un script pentru generarea copacilor la inceputul jocului.
+Spawn al inamicilor(sfere rosii) in pozitii random in apropierea player-ului.
 
 
 
