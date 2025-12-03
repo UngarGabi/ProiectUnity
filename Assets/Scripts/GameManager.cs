@@ -10,19 +10,22 @@ public class GameManager : MonoBehaviour
     public float YRangeTrees = 400;
     public float xRangeTrees = 100;
 
-    [Header("Layer Mask")]
-    public LayerMask obstacleLayers;
+    public GameObject pauseGame;
+    private bool isGameOnPause = false;
+
+    
     void Start()
     {
         //SpawnTrees();
+      
     }
 
     void Update()
     {
-        
+        pauseMenu();
     }
 
-    void SpawnTrees()
+    private void SpawnTrees()
     {
         for (int i = 0; i < prefabCount; i++) {
             spawnZoneX = Random.Range(xRangeTrees, YRangeTrees);
@@ -32,5 +35,27 @@ public class GameManager : MonoBehaviour
             Instantiate(treePrefab, treePosition, treePrefab.GetComponent<Transform>().rotation);
 
         }
+    }
+
+    public void pauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseGame.SetActive(true);
+            Time.timeScale = 0.0f;
+           
+        }
+       
+    }
+
+    public void resumeGame()
+    {
+        pauseGame.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
