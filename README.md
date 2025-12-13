@@ -16,6 +16,14 @@ S-au adaugat asset-uri utile si s-au facut prefab-uri.
 
 Spawn al inamicilor(sfere rosii) in pozitii random in apropierea player-ului.
 
+Inamicii vin inspre tine daca esti prea aproape de ei.
+
+Iteme - Topor / Potiune - deja in scena pt testare.
+
+Inventar - Se vede doar din inspector.
+
+Pickup Object System.
+
 
 
 Dorim ca review-ul sa fie trimis pe Teams, la Ungar Gabriel.
