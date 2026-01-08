@@ -1,29 +1,79 @@
 using UnityEngine;
 
-enum EnemyStae
+public enum EnemyState
 {
     Wander,
-    Chase,
+    Chase
 }
+
 public class EnemyScript : MonoBehaviour
 {
-    public GameObject Player;
-    private Vector3 playerPosition;
-    private float distancePlayerToEnemy;
-    private float minimumDistance = 10.0f;
-    private float chaseSpeed = 5.0f;
+    public float chaseSpeed = 5.0f;
+    public float wanderSpeed = 2.0f;
+    public float minimumDistance = 10.0f;
+    public float wanderRadius = 5.0f;
+
+    private Transform playerTransform;
+    private EnemyState currentState;
+    private Vector3 wanderTarget;
+    private float distanceToPlayer;
+
     void Start()
     {
-       
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+        }
+
+        currentState = EnemyState.Wander;
+        GetNewWanderPosition();
     }
 
     void Update()
     {
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        distancePlayerToEnemy = Vector3.Distance(playerPosition, transform.position);
+        distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
-        if (distancePlayerToEnemy < minimumDistance)
+        if (distanceToPlayer < minimumDistance)
+        {
+            currentState = EnemyState.Chase;
+        }
+        else
+        {
+            currentState = EnemyState.Wander;
+        }
 
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerPosition.x, transform.position.y, playerPosition.z), chaseSpeed * Time.deltaTime);
+        switch (currentState)
+        {
+            case EnemyState.Wander:
+                WanderBehavior();
+                break;
+            case EnemyState.Chase:
+                ChaseBehavior();
+                break;
+        }
+    }
+
+    void ChaseBehavior()
+    {
+        Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, chaseSpeed * Time.deltaTime);
+    }
+
+    void WanderBehavior()
+    {
+        Vector3 moveSpot = new Vector3(wanderTarget.x, transform.position.y, wanderTarget.z);
+        transform.position = Vector3.MoveTowards(transform.position, moveSpot, wanderSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, moveSpot) < 0.2f)
+        {
+            GetNewWanderPosition();
+        }
+    }
+
+    void GetNewWanderPosition()
+    {
+        Vector2 randomPoint = Random.insideUnitCircle * wanderRadius;
+        wanderTarget = new Vector3(transform.position.x + randomPoint.x, transform.position.y, transform.position.z + randomPoint.y);
     }
 }
