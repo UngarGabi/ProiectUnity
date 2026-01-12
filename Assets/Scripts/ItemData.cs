@@ -13,5 +13,6 @@ public class ItemData : ScriptableObject
     public Sprite itemIcon;
     public GameObject itemPrefab;
     public ItemType itemType;
+    public float attackDamage;
     
 }

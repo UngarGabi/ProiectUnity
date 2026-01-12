@@ -1,5 +1,5 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -18,10 +18,6 @@ public class PlayerInventory : MonoBehaviour
             inventory = new ItemData[inventorySpace];
         } 
         
-    }
-    void Start()
-    {
-
     }
 
     void Update()
@@ -61,6 +57,8 @@ public class PlayerInventory : MonoBehaviour
         if (!IsValidIndex(inventoryIndex)) 
             return;
 
+        int idx = inventoryIndex;
+
         ItemData item = inventory[inventoryIndex];
         if (item == null) return;
 
@@ -75,9 +73,10 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.LogWarning($"{item.itemName} nu are worldPrefab setat pentru drop!");
         }
+        inventory[idx] = null;
         inventoryIndex = -1;
         Unequip();
-        inventory[inventoryIndex] = null;
+
 
     }
 
@@ -128,9 +127,13 @@ public class PlayerInventory : MonoBehaviour
         // reset local 
         equippedObject.transform.localPosition = Vector3.zero;
         equippedObject.transform.localRotation = Quaternion.identity;
-        equippedObject.transform.localScale = Vector3.one;
 
-        equippedObject.transform.Rotate(90f, 0f, 0f);
+        if (equippedObject.GetComponent<RangedAttack>() == null)
+        {
+            equippedObject.transform.Rotate(90f, 0f, 0f);
+            equippedObject.transform.localScale = Vector3.one;
+        }
+
 
 
         // dezactivam fizica / collider-ele ca sa nu declanseze pickup-uri

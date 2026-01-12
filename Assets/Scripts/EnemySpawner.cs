@@ -122,5 +122,11 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-        
+    public bool CheckSpawnPositionPublic(ref Vector3 spawnPosition)
+    {
+        return CheckSpawnPosition(ref spawnPosition);
+    }
+
+
+
 }

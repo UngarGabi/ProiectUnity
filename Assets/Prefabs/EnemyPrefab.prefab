@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3376566189212049089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3165090511847326494}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3165090511847326494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376566189212049089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2787897047486088306}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4661742858954807759
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +45,8 @@ GameObject:
   - component: {fileID: 1779217644910454359}
   - component: {fileID: 8818197832944043180}
   - component: {fileID: 4420608707781946604}
-  m_Layer: 0
+  - component: {fileID: 8018166890959759607}
+  m_Layer: 7
   m_Name: EnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +65,8 @@ Transform:
   m_LocalPosition: {x: 194.99019, y: 2.383197, z: 190.70627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3165090511847326494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5694907840560357837
@@ -99,7 +132,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -108,8 +141,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5484085
+  m_Center: {x: 0.026008606, y: 0, z: -0.022399902}
 --- !u!54 &8818197832944043180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,4 +182,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78516cb48333e0b4186c3085c1e7a43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  chaseSpeed: 5
+  wanderSpeed: 2
+  minimumDistance: 10
+  wanderRadius: 5
+  baseDamage: 10
+  attackPoint: {fileID: 3165090511847326494}
+  radius: 4
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &8018166890959759607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661742858954807759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584d33d87f55ccb429a75678c050f500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountHealth: 0
+  maxHealth: 100

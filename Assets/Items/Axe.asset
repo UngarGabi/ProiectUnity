@@ -17,3 +17,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 8203073568141072114, guid: 6cd1ac9652a50da4485a86492f47c63d,
     type: 3}
   itemType: 0
+  attackDamage: 40
