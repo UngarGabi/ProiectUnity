@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8018166890959759607}
   m_Layer: 7
   m_Name: EnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Inamic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,8 +141,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5484085
-  m_Center: {x: 0.026008606, y: 0, z: -0.022399902}
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8818197832944043180
 Rigidbody:
   m_ObjectHideFlags: 0
