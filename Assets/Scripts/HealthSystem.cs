@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float amountHealth;
     [SerializeField] private float maxHealth;
     private bool isAlive = true;
+    [SerializeField] private Slider healthBar;
     void Start()
     {
         amountHealth = maxHealth;
@@ -13,7 +15,7 @@ public class HealthSystem : MonoBehaviour
 
     void Update()
     {
-        
+        UpdateUI();
     }
 
     public void TakeDamage(float amount)
@@ -34,7 +36,7 @@ public class HealthSystem : MonoBehaviour
 
     public void Heal(float amount)
     {
-        if (amountHealth + amount <= maxHealth)
+        if (amountHealth + amount >= maxHealth)
         {
             amountHealth = maxHealth;
         }
@@ -45,8 +47,18 @@ public class HealthSystem : MonoBehaviour
         
     }
 
+    private void UpdateUI()
+    {
+        if (healthBar == null)
+            return;
+
+        healthBar.value = amountHealth;
+    }
+
     private void Die()
     {
         Destroy(gameObject);
+        if (gameObject.CompareTag("Enemy"))
+            EnemySpawner.maxNumberOfSpawns--;
     }
 }

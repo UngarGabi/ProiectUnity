@@ -84,7 +84,6 @@ public class PlayerInventory : MonoBehaviour
     {
         if (index < 0 || index >= inventory.Length)
         {
-            Debug.LogWarning($"[Inventory] Slot index invalid: {index}");
             return false;
         }
         return true;
@@ -164,4 +163,16 @@ public class PlayerInventory : MonoBehaviour
             rb.detectCollisions = false;
         }
     }
+
+    public void ConsumeSelectedItem() // pentru potiuni
+    {
+        if (!IsValidIndex(inventoryIndex))
+            return;
+
+        inventory[inventoryIndex] = null;
+        inventoryIndex = -1;
+
+        Unequip(); 
+    }
+
 }

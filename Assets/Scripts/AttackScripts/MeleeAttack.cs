@@ -18,7 +18,6 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private float attackAngle = 90f; // unghi total (ex: 90 = 45 stg + 45 dr)
     [SerializeField] private float enemyCenterHeightOffset = 0.9f; // ca sa nu calculeze spre picioare
 
-
     private float cooldownTimer;
     void Start()
     {

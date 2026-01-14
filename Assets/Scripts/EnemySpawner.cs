@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnTimer;
     private float enemyHalfHeight;
+    static public int maxNumberOfSpawns = 0;
 
 
     private void Awake()
@@ -59,6 +60,9 @@ public class EnemySpawner : MonoBehaviour
         Vector3 enemySpawnPosition = GetSpawnPosition();
         if (CheckSpawnPosition(ref enemySpawnPosition))
             Instantiate(enemyPrefab, enemySpawnPosition, enemyPrefab.transform.rotation);
+        
+        if(maxNumberOfSpawns <= 25)
+            maxNumberOfSpawns++;
     }
     private Vector3 GetSpawnPosition()
     {

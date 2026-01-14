@@ -14,5 +14,6 @@ public class ItemData : ScriptableObject
     public GameObject itemPrefab;
     public ItemType itemType;
     public float attackDamage;
+    public float healAmount;
     
 }
