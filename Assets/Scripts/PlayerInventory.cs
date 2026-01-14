@@ -33,7 +33,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public bool AddItem(ItemData item)
+    public bool AddItem(ItemData item) // adaugam item in mana
     {
         if (item == null)
         {
@@ -41,7 +41,7 @@ public class PlayerInventory : MonoBehaviour
             return false;
         }
 
-        for (int i = 0; i < inventory.Length; i++)
+        for (int i = 0; i < inventory.Length; i++) // la primul slot liber pune in inventar
         {
             if (inventory[i] == null)
             {
@@ -52,7 +52,7 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
-    public void DropItem()
+    public void DropItem() 
     {
         if (!IsValidIndex(inventoryIndex)) 
             return;
@@ -62,6 +62,7 @@ public class PlayerInventory : MonoBehaviour
         ItemData item = inventory[inventoryIndex];
         if (item == null) return;
 
+        // dam sapwn la item-ul din mana pe jos
         if (item.itemPrefab != null)
         {
             Vector3 dropPos = playerPosition.position + playerPosition.forward * 1.0f;
@@ -69,10 +70,12 @@ public class PlayerInventory : MonoBehaviour
 
             Instantiate(item.itemPrefab, dropPos, dropRot);
         }
+        
         else
         {
             Debug.LogWarning($"{item.itemName} nu are worldPrefab setat pentru drop!");
         }
+        // dezechipam si scoatem din inventar acel item
         inventory[idx] = null;
         inventoryIndex = -1;
         Unequip();

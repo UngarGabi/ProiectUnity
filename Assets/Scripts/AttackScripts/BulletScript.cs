@@ -18,7 +18,7 @@ public class BulletScript : MonoBehaviour
         rb.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
-    // SE CHEAM? C�ND TRAGI
+    // SE CHEAMA CAND TRAGI
     public void Fire(Vector3 direction, float damage)
     {
         attackDamage = damage;
@@ -27,7 +27,7 @@ public class BulletScript : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        rb.AddForce(direction.normalized * speed, ForceMode.Impulse);
+        rb.AddForce(direction.normalized * speed, ForceMode.Impulse); // il fac sa mearga in fata
     }
 
     private void Update()
@@ -41,10 +41,10 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((hitMask.value & (1 << collision.gameObject.layer)) == 0)
+        if ((hitMask.value & (1 << collision.gameObject.layer)) == 0) // verifica layer-ul
             return;
 
-        HealthSystem health = collision.gameObject.GetComponentInParent<HealthSystem>();
+        HealthSystem health = collision.gameObject.GetComponentInParent<HealthSystem>(); // da damage
         if (health != null)
         {
             health.TakeDamage(attackDamage);

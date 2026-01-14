@@ -13,7 +13,7 @@ public class ItemSpawner : MonoBehaviour
             return;
         }
 
-        int numberOfItemsInTheWorld = Random.Range(50, 60); // intre 20 si 30 de iteme
+        int numberOfItemsInTheWorld = Random.Range(50, 60); // intre 50 si 60 de iteme
        
         for (int i = 0; i < numberOfItemsInTheWorld; i++)
         {
@@ -24,6 +24,7 @@ public class ItemSpawner : MonoBehaviour
             {
                 positionInTheMap = getRandomPointOnMap();
 
+                //verificam daca pozitia e ok folosind functia din EnemySpawner
                 if(enemySpawnerFunction.CheckSpawnPositionPublic(ref positionInTheMap))
                 {
                     GameObject itemPrefab = GetRandomItemPrefab();

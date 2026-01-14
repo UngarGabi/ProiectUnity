@@ -10,7 +10,7 @@ public class WinUI : MonoBehaviour
     public void SetProgress(int completed, int total)
     {
         if (progressText != null)
-            progressText.text = "Locuri activate: " + completed + " / " + total;
+            progressText.text = "Tottems Collected: " + completed + " / " + total;
     }
 
     public void SetHoldProgress(float t01)

@@ -10,8 +10,15 @@ public class WinDoorTrigger : MonoBehaviour
 
             // stop joc
             Time.timeScale = 0f;
+            int finalScore = ScoreTracker.Instance.CalculateScore_OnWin();
+            float time = ScoreTracker.Instance.GetTimePlayed();
 
-         
+            FindObjectOfType<GameOverUI>().ShowGameOver(finalScore, time);
+
+            HighScoreManager.Instance.AddScore("ABC", time, finalScore);
+
+
+
         }
     }
 }

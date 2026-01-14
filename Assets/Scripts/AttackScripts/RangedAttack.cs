@@ -31,7 +31,7 @@ public class RangedAttack : MonoBehaviour
 
         cooldownTimer = attackCooldown;
 
-        GameObject bulletObj = Instantiate(
+        GameObject bulletObj = Instantiate( // creeaza glontul 
             bulletPrefab,
             bulletSpawnPoint.position,
             bulletSpawnPoint.rotation
@@ -40,7 +40,7 @@ public class RangedAttack : MonoBehaviour
         BulletScript bullet = bulletObj.GetComponent<BulletScript>();
         if (bullet != null)
         {
-            bullet.Fire(bulletSpawnPoint.forward, bulletDamage);
+            bullet.Fire(bulletSpawnPoint.forward, bulletDamage); 
         }
     }
 }

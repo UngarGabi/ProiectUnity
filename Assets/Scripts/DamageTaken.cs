@@ -17,7 +17,7 @@ public class SunetDamage : MonoBehaviour
     void OnCollisionEnter(Collision coliziune)
     {
        
-        if (coliziune.gameObject.tag == "Inamic" && timer <= 0)
+        if (coliziune.gameObject.tag == "Enemy" && timer <= 0)
         {
            
             AudioSource.PlayClipAtPoint(sunetLovitura, transform.position, 1.0f);

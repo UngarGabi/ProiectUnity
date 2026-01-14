@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void pauseMenu()
+    public void pauseMenu() // pauza la esc
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -54,8 +55,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    public void QuitGame()
+    public void QuitGame() // iesi din aplicatie
     {
         Application.Quit();
+    }
+
+    public void GoToMainMenu() // te intorci la Main Menu
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Resetezi jocul
     }
 }
